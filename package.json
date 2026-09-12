@@ -1,0 +1,26 @@
+{
+  "name": "opencode-task-tool",
+  "version": "0.1.0",
+  "description": "OpenCode V2 plugin that adds a tree-shaped task tool",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "test": "bun test"
+  },
+  "exports": {
+    ".": "./task-tool.ts"
+  },
+  "files": [
+    "task-tool.ts"
+  ],
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "task",
+    "todo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jadmadi/opencode-task-tool.git"
+  }
+}
