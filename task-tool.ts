@@ -85,7 +85,7 @@ function applyAction(items: TaskItem[], input: TaskInput): { items: TaskItem[]; 
         changed = true
       }
       if (input.title !== undefined) {
-        const title = input.title.trim()
+        const title = typeof input.title === "string" ? input.title.trim() : ""
         if (!title) throw new Error("task update needs a non-empty title")
         next.title = title
         changed = true

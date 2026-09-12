@@ -135,10 +135,26 @@ describe("execute", () => {
     expect(other.content).toBe("no tasks")
   })
 
-  test("surfaces a clear error", async () => {
-    const { ctx, added } = makeCtx()
+  test("surfaces a clear error and leaves the state alone", async () => {
+    const { ctx, added, store } = makeCtx()
     await (plugin as any).setup(ctx)
+    await added[0].execute({ action: "add", title: "First" }, { sessionID: "ses_1" })
+    const before = JSON.stringify(store.get("tasks/ses_1"))
     const result = added[0].execute({ action: "update", id: "T9", status: "done" }, { sessionID: "ses_1" })
     await expect(result).rejects.toThrow(/unknown task id/)
+    expect(JSON.stringify(store.get("tasks/ses_1"))).toBe(before)
+    expect((await added[0].execute({ action: "list" }, { sessionID: "ses_1" })).content).toBe("T1 [open] First")
+  })
+
+  test("a repeated list returns the same ids and does not rewrite storage", async () => {
+    const { ctx, added, store } = makeCtx()
+    await (plugin as any).setup(ctx)
+    await added[0].execute({ action: "add", title: "First" }, { sessionID: "ses_1" })
+    await added[0].execute({ action: "add", title: "Second" }, { sessionID: "ses_1" })
+    const before = JSON.stringify(store.get("tasks/ses_1"))
+    const first = await added[0].execute({ action: "list" }, { sessionID: "ses_1" })
+    const second = await added[0].execute({ action: "list" }, { sessionID: "ses_1" })
+    expect(second.content).toBe(first.content)
+    expect(JSON.stringify(store.get("tasks/ses_1"))).toBe(before)
   })
 })
