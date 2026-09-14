@@ -5,6 +5,8 @@
 // `tasks/<sessionID>`. The runtime does not resolve @opencode/plugin, so this
 // file exports a plain { id, setup } object.
 
+const VERSION = "0.1.0"
+
 type TaskStatus = "open" | "doing" | "done"
 
 interface TaskItem {
@@ -141,5 +143,5 @@ const plugin = {
   },
 }
 
-export { applyAction, nextId, render }
+export { applyAction, nextId, render, VERSION }
 export default plugin

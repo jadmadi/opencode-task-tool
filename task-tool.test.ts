@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import plugin, { applyAction, nextId, render } from "./task-tool.ts"
+import plugin, { applyAction, nextId, render, VERSION } from "./task-tool.ts"
 
 const item = (id: string, title: string, status: "open" | "doing" | "done" = "open", parent?: string) => ({
   id,
@@ -156,5 +156,12 @@ describe("execute", () => {
     const second = await added[0].execute({ action: "list" }, { sessionID: "ses_1" })
     expect(second.content).toBe(first.content)
     expect(JSON.stringify(store.get("tasks/ses_1"))).toBe(before)
+  })
+})
+
+describe("version", () => {
+  test("VERSION matches package.json", async () => {
+    const pkg = (await Bun.file(new URL("./package.json", import.meta.url)).json()) as { version: string }
+    expect(VERSION).toBe(pkg.version)
   })
 })
