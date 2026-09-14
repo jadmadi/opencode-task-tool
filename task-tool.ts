@@ -5,7 +5,7 @@
 // `tasks/<sessionID>`. The runtime does not resolve @opencode/plugin, so this
 // file exports a plain { id, setup } object.
 
-const VERSION = "0.1.0"
+const VERSION = "0.1.1"
 
 type TaskStatus = "open" | "doing" | "done"
 

@@ -4,6 +4,12 @@ An OpenCode V2 plugin that adds a `task` tool. The tool keeps a tree of items
 per session, with ids like `T1`, `T1.1`, and `T2`, so multi-step work survives
 long turns and compaction.
 
+## OpenCode
+
+This plugin runs on OpenCode. Install it with my referral link:
+
+https://opencode.ai/go?ref=N9H3ZEP22A
+
 ## Install
 
 ```sh
