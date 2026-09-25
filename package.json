@@ -1,6 +1,7 @@
 {
   "name": "opencode-task-tool",
   "version": "2026.9.0",
+  "builtUnder": "2.0.16",
   "description": "OpenCode V2 plugin that adds a tree-shaped task tool",
   "type": "module",
   "license": "MIT",
