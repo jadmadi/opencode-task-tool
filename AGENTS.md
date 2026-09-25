@@ -5,7 +5,7 @@ Guidance for agents working in this repository.
 ## What this is
 
 An OpenCode V2 plugin (`task-tool.ts`) that registers a `task` tool with a
-tree-shaped item list per session. No build step, no dependencies, MIT.
+tree-shaped item list per session. No build step, no dependencies, AGPL-3.0-only.
 
 ## Local development
 
