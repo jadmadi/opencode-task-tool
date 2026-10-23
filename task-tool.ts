@@ -2,10 +2,12 @@
 //
 // Registers one `task` tool that keeps a tree of items per session. Ids are
 // T1, T1.1, T2, and so on, and never renumber. State lives in ctx.storage under
-// `tasks/<sessionID>`. The runtime does not resolve @opencode/plugin, so this
-// file exports a plain { id, setup } object.
+// `tasks/<sessionID>`. The host provides @opencode/plugin at runtime, so this
+// file uses Plugin.define.
 
-const VERSION = "2026.9.0"
+import { Plugin } from "@opencode/plugin"
+
+const VERSION = "2026.10.0"
 
 type TaskStatus = "open" | "doing" | "done"
 
@@ -110,7 +112,7 @@ function applyAction(items: TaskItem[], input: TaskInput): { items: TaskItem[]; 
   }
 }
 
-const plugin = {
+const plugin = Plugin.define({
   id: "task-tool",
   async setup(ctx: any) {
     await ctx.tool.transform((editor: any) => {
@@ -141,7 +143,7 @@ const plugin = {
       })
     })
   },
-}
+})
 
 export { applyAction, nextId, render, VERSION }
 export default plugin
