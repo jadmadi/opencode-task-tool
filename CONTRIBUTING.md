@@ -15,7 +15,9 @@ inside OpenCode, which embeds Bun.
 
 ## Rules
 
-- No imports in the plugin. Export a plain `{ id, setup }` object.
+- Import `{ Plugin } from "@opencode/plugin"` and export
+  `Plugin.define({ id, setup })`. The host provides the module at runtime; do
+  not add it as a package dependency. Tests stub it in `test-preload.ts`.
 - Keep the tree ids stable. Never renumber an existing item.
 - Add a test for any behavior you change.
 
